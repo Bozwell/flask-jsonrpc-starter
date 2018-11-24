@@ -7,7 +7,7 @@ from models import db
 
 server = Flask(__name__)
 server.debug = config.DEBUG
-server.config['SQLALCHEMY_DATABASE_URI'] = conclfig.DB_URI
+server.config['SQLALCHEMY_DATABASE_URI'] = config.DB_URI
 db.init_app(server)
 
 migrate = Migrate(server, db)
