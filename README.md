@@ -5,3 +5,7 @@ flask를 이용해서 api서버를 만들때 구조화되어 있고 좀더 쉽�
 * Flask-JSONRPC를 이용해서 jsonrpc 형식의 api를 제공합니다.
 * 데이타 저장소는 Postgresql DB를 사용하며 SQLAlehemy를 이용해서 핸들링합니다.
 * 스케쥴 작업은 Flask-APScheduler를 이용합니다.
+
+
+
+[2018-11-24] @scheduler.task decordater를 사용하기위해 Flask-APScheduler를 pip를 통해 설치하지 않고 소스코드를 다운받아 설치해야한다.
