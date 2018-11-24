@@ -1,6 +1,7 @@
 from flask import Flask
 import config
 from models import db
+from schedule import scheduler
 from flask_jsonrpc import JSONRPC
 
 app = Flask(__name__)
@@ -19,4 +20,9 @@ jsonrpc = JSONRPC(app, '/api', enable_web_browsable_api=True)
 import routes.user
 
 if __name__ == '__main__':
-    app.run(host=config.HOST, port=config.PORT)
+    scheduler.init_app(app)
+    scheduler.start()
+    app.run(use_reloader=False,
+            debug=False,
+            host=config.HOST,
+            port=config.PORT)
