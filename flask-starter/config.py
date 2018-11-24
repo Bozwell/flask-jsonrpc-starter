@@ -24,5 +24,5 @@ logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[TimedRotatingFileHandler(filename=os.getenv('SERVICE_LOG', 'vpn-monitor.log'), when="midnight")]
+    handlers=[TimedRotatingFileHandler(filename=os.getenv('SERVICE_LOG', 'flask-starter.log'), when="midnight")]
 )

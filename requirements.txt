@@ -1,6 +1,8 @@
 alembic==1.0.3
+APScheduler==3.5.3
 Click==7.0
 Flask==1.0.2
+Flask-APScheduler==1.10.1
 Flask-JSONRPC==0.3.1
 Flask-Migrate==2.3.0
 Flask-Script==2.0.6
@@ -13,6 +15,8 @@ psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 python-dateutil==2.7.5
 python-editor==1.0.3
+pytz==2018.7
 six==1.11.0
 SQLAlchemy==1.2.14
+tzlocal==1.5.1
 Werkzeug==0.14.1
