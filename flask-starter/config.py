@@ -1,5 +1,6 @@
 import logging
 import os
+import gzip
 from logging.handlers import TimedRotatingFileHandler
 
 DEBUG = os.getenv('FLASK_ENV') == 'development'
@@ -20,9 +21,24 @@ SECRET_KEY = os.getenv('SECRET_KEY', b'3OVQ\xb6\x12\xe1w\xf8z\x8eK4Y\x8c\x0f\x07
 SQLALCHEMY_POOL_SIZE = os.getenv('SQLALCHEMY_POOL_SIZE', 20)
 SQLALCHEMY_MAX_OVERFLOW = os.getenv('SQLALCHEMY_MAX_OVERFLOW', 100)
 
+
+class GZipRotator:
+    def __call__(self, source, dest):
+        os.rename(source, dest)
+        f_in = open(dest, 'rb')
+        f_out = gzip.open("%s.gz" % dest, 'wb')
+        f_out.writelines(f_in)
+        f_out.close()
+        f_in.close()
+        os.remove(dest)
+
+GzipRotatorHandler = TimedRotatingFileHandler(filename=os.getenv('SERVICE_LOG', 'vpn-monitor.log'), when="midnight")
+GzipRotatorHandler.rotator = GZipRotator()
+
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[TimedRotatingFileHandler(filename=os.getenv('SERVICE_LOG', 'flask-starter.log'), when="midnight")]
+    handlers=[GzipRotatorHandler]
 )
