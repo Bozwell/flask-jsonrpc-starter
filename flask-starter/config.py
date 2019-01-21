@@ -32,7 +32,12 @@ class GZipRotator:
         f_in.close()
         os.remove(dest)
 
-GzipRotatorHandler = TimedRotatingFileHandler(filename=os.getenv('SERVICE_LOG', 'vpn-monitor.log'), when="midnight")
+GzipRotatorHandler = TimedRotatingFileHandler(
+    filename=os.getenv('SERVICE_LOG','vpn-monitor.log'),
+    when="midnight",
+    backupCount=os.getenv('MAX_LOGFILE_CNT',30)
+)
+
 GzipRotatorHandler.rotator = GZipRotator()
 
 

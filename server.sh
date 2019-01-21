@@ -17,5 +17,7 @@ export APPLICATION_POSTGRES_DB=postgres
 #JSONRPC Config
 export ENABLE_WEB_BROWSABLE_API=True
 
+#Logging
+export MAX_LOGFILE_CNT=30
 
 python $FLASK_APP/app.py &
