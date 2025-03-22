@@ -2,3 +2,4 @@ venv
 *.log
 migrations
 .idea
+__pycache__
